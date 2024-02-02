@@ -17,7 +17,8 @@ class RegionalFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'province' => $this->faker->state(),
+            'district' => $this->faker->city(),
         ];
     }
 }

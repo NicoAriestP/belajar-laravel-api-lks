@@ -19,7 +19,7 @@ class Society extends Model
         'gender',
         'address',
         'regional_id',
-        'login_tokens',
+        'login_token',
     ];
 
     public function regional(){

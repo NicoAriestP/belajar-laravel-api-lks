@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('officer_id');
 
             $table->tinyInteger('dose');
-            $table->date('date')->nullable();
+            $table->date('date')->nullable;
             $table->timestamps();
         });
     }

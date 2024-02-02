@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('born_date');
             $table->enum('gender', ['male','female']);
             $table->text('address');
+            $table->string('login_token')->nullable();
 
             $table->timestamps();
         });
