@@ -43,12 +43,21 @@ class ConsultationController extends Controller
             ], 401);
         }
 
+        $societyConsultation = Consultation::where('society_id', $society->id)->first();
+
+        if ($societyConsultation) {
+            return response()->json([
+                'message' => 'Society already have one consultation',
+            ], 400);
+        }
+
         $validated = $request->validate([
             'disease_history' => 'required|string|max:255',
             'current_symptomps' => 'required|string|max:255'
         ]);
 
         $model = Consultation::create($validated);
+        $model->society_id = $society->id;
         $model->save();
 
         if ($model) {
