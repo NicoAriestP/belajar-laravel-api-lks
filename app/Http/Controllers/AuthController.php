@@ -12,8 +12,6 @@ class AuthController extends Controller
         $idCardNumber = $request->id_card_number;
         $password = $request->password;
 
-        dd($idCardNumber, $password);
-
         $society = Society::where('id_card_number', $request->id_card_number)
                             ->where('password', $request->password)
                             ->with('regional')
@@ -33,5 +31,23 @@ class AuthController extends Controller
         return response()->json([
             'data' => $society,
         ], 200);
+    }
+
+    public function logout(Request $request)
+    {
+        $society = Society::where('login_token', $request->token)->first();
+
+        if(!$society || !$request->token) {
+            return response()->json([
+                'message' => 'Invalid token'
+            ], 401);
+        }
+
+        $society->login_token = null;
+        $society->save();
+
+        return response()->json([
+            'message' => 'Logout success'
+        ]);
     }
 }

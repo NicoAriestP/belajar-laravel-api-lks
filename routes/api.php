@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConsultationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,11 @@ Route::prefix('v1')->group(function() {
     Route::controller(AuthController::class)->group(function(){
         Route::post('auth/login', 'login');
         Route::post('auth/logout', 'logout');
+    });
+
+    Route::controller(ConsultationController::class)->group(function(){
+        Route::get('consultations', 'index');
+        Route::post('consultations', 'requestConsultation');
     });
 
     

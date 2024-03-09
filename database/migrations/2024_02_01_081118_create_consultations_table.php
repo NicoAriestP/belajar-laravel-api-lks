@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('society_id');
-            $table->foreignId('doctor_id');
+            $table->foreignId('society_id')->nullable();
+            $table->foreignId('doctor_id')->nullable();
 
-            $table->enum('status', ['accepted','decline','pending']);
+            $table->enum('status', ['accepted','decline','pending'])->default('pending');
             $table->text('disease_history');
             $table->text('current_symptomps');
-            $table->text('doctor_notes');
+            $table->text('doctor_notes')->nullable();
             $table->timestamps();
         });
     }
