@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Consultation;
 use App\Models\Society;
+use App\Models\Medical;
 
 class ConsultationController extends Controller
 {
@@ -70,4 +71,25 @@ class ConsultationController extends Controller
             ], 400);
         }  
     }
+
+    // public function respond(Request $request, Consultation $model)
+    // {
+    //     $respond = $request->respond;
+
+    //     $society = Medical::where('login_token', $request->token)->first();
+
+    //     if(!$society || !$request->token) {
+    //         return response()->json([
+    //             'message' => 'Unauthorized User'
+    //         ], 401);
+    //     }
+
+    //     if ($respond === 'accepted') {
+    //        $model->status = 'accepted';
+    //        $model->save();
+    //     } elseif ($respond === 'rejected') {
+    //         $model->status = 'rejected';
+    //         $model->save();
+    //     }
+    // }
 }

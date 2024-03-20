@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\SpotController;
+use App\Http\Controllers\SpotVaccineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,15 @@ Route::prefix('v1')->group(function() {
     Route::controller(ConsultationController::class)->group(function(){
         Route::get('consultations', 'index');
         Route::post('consultations', 'requestConsultation');
+        Route::post('consultations/{model}', 'respond');
     });
 
-    
+    Route::controller(SpotController::class)->group(function(){
+        Route::get('spots', 'index');
+        Route::get('spots/{model}', 'detail');
+    });
+
+    Route::controller(SpotVaccineController::class)->group(function(){
+        Route::get('spot-vaccines', 'index');
+    });
 });
